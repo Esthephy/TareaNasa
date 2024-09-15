@@ -104,7 +104,7 @@ nav ul li a{
 .arrow-left,
 .arrow-right{
     margin:auto 0;
-    font-size: 4rem;    
+    font-size: 4rem; 
     color: #EBEBFF;
 }
 .arrow-right i{
@@ -112,8 +112,10 @@ nav ul li a{
     right:0;
     margin-right:10px;
 }
-.arrow-left{
-    margin-left: 10px;
+.arrow-left i{
+    position: absolute;
+    left:0;
+    margin-left:10px;
 }
 
 
@@ -139,7 +141,7 @@ nav ul li a{
 /*-----------------------------SERVICES-----------------------------*/
 #services{
     background-color: var(--main-color);
-
+    padding-bottom: 20px; 
 
 }
 .container-services{
@@ -154,16 +156,18 @@ nav ul li a{
     padding: 30px;
 }
 
-.category{
-  
-    margin: 0 50px 50px 50px; 
+.category{  
+    margin:0 50px;   
 }
+
+
 .category-header{ 
     font-size: 2rem;
     font-weight:lighter;
     background-color: white;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     padding: 15px 30px;
+    border-radius: 50px;
      
 }
  
@@ -172,14 +176,22 @@ nav ul li a{
     background-color: var(--dark-color);
     color: white;
     text-align: right;
+    margin-bottom: 10px;
 
 }
+
+.category-body{
+    margin-bottom: 20px;
+}
+
 
 .category-activate .category-body{
     background-color: var(--dark-color);
     display: flex;
+    flex-wrap: wrap;
     gap:50px; 
     justify-content: center;
+    border-radius: 10px;
 }
 .card{
     width: 15vw;
@@ -190,7 +202,7 @@ nav ul li a{
 } 
 
 .category-card-img{
-    height: 20vw;
+    height: 65%;
     width: 100%;
     
 }
@@ -238,78 +250,109 @@ nav ul li a{
 
 .clients-body {
     display: flex;
+    flex-wrap: wrap;
     gap: 50px;
     justify-content: center;
     padding: 0 50px 50px 50px;
 }
 
-.card-client {
-    height: 15vw;
-    width: 15vw;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;  
+.card{
+    position: relative;
+    width: 300px;
+    height: 350px;
+
 }
 
-.card-client-img {
+.card .face{
+    position: absolute;
     width: 100%;
     height: 100%;
-    transition: transform 1s, opacity 1s;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: .9s;
+
 }
 
+.card .front{
+    transform:perspective(600px) rotateY(0deg);
+    box-shadow: 0 5px 10px #000;
 
-.card-client-img img {
+}
+
+.card .front img{
+    position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: top center;
+
 }
 
-.comment {
-    width: 100%;
-    height: 100%;
+.card .front h3{ 
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:45px;
+    line-height: 45px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color:#fff;
+    background-color: rgba(32, 168, 153, 0.4);
+    text-align: center;
+}
+
+.card .back{
+    transform: perspective(600px) rotateY(180deg);
     background-color: var(--main-color);
-    display: grid;
-    position: absolute;  
-    top: 0;
-    left: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 1s, visibility 1s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
 }
-
-
-
+.comment{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    gap:40px;
+}
 .header-comment {
     font-size: 1rem;
-    font-weight: lighter;
+    font-weight: bold;
     text-align: center;
-    margin: 20px 0 10px 0;
+    margin: 0 0 20px 0;
+    letter-spacing:2px;
+}
+
+.comment p { 
+    text-align: justify;
+    letter-spacing:1px;
+    font-size: 1rem;
+
 }
 
 .comment hr {
     border: solid white 1px;
-    width: 60%;
-    margin: 0 auto;
+    width: 60%; 
+    margin: auto;
 }
 
-.comment p {
-    margin: 0 20px;
-    text-align: justify;
-}
-
+ 
 .comment .grade {
     display: flex;
     justify-content: space-between;
-    margin: 0 20px;
     align-items: center;
+}
+.comment .grade .starts{
+    color: var(--light-color); 
+    font-size: 1.6rem;
 }
 
 .comment .grade .autor {
     border-radius: 50%;
     background-color: var(--light-color);
-    height: 3vw;
-    width: 3vw;
+    height: 50px;
+    width: 50px;
 }
 
 .comment .grade .autor span {
@@ -320,39 +363,36 @@ nav ul li a{
     align-items: center;
     font-weight: 600;
 }
-
-.card-client:hover .comment {
-    opacity: 1;
-    visibility: visible;
-    transform: rotateY(0);
-}
-
-.card-client-img:hover {
-    transform: rotateY(90deg);
-    opacity: 0;
-}
-
  
+.card:hover .front{
+    transform: perspective(600px) rotateY(180deg);
+}
+
+.card:hover .back{
+    transform: perspective(600px) rotateY(360deg);
+}
 
 /*-----------------------------SOCIAL MEDIA-----------------------------*/
 #contacts{
     margin-bottom: 50px;
 }
  .social-media-icons,
- .social-media-qr{
+ .social-media-qr {
+    width: 50%;
+    margin: auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap:100px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center; 
  }
  
- .social-media-icons{
+ .social-media-icons i{
     font-size: 7rem;
  }
  .qr{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     
  }
@@ -378,6 +418,8 @@ nav ul li a{
 
 .aboutus-center{ 
  position: relative; 
+ width: 350px; 
+ height:450px ;
 
 }
 .aboutus-center .line-left,
@@ -385,13 +427,14 @@ nav ul li a{
     border:none;
     background-color: black;
     width: 0.1vw;
-    height: 20vw;  
+    height:60%;  
 }
 
 .line-left{
     position: absolute; 
     left:35%; 
     bottom:5%;
+    top:10%;
     transform: rotate(17deg);
 }
 
@@ -399,13 +442,14 @@ nav ul li a{
     position: absolute;
     right: 35%;
     bottom: 5%;
+    top:10%;
     transform: rotate(-17deg);
     
 }
 .footprints .footprint-left-sole,
 .footprints .footprint-right-sole{ 
-    width: 1vw;
-    height: 1vw; 
+    width: 15px;
+    height: 15px; 
     background-color: black; 
     clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
 
@@ -414,8 +458,8 @@ nav ul li a{
 
 .footprints .footprint-left-heel,
 .footprints .footprint-right-heel{ 
-    width: 0.5vw;
-    height: 0.5vw; 
+    width: 8px;
+    height: 8px; 
     background-color: green; 
     margin: auto;
     margin-bottom: 10px; 
